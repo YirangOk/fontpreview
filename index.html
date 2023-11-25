@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>폰트 미리보기 툴 Font Preview Tool</title>
+  <meta name="description" content="이 페이지는 폰트 디자이너를 위한 무료 미리보기 도구입니다.">
+  <meta name="keywords" content="폰트 미리보기, 폰트 디자인, 무료 도구, 웹 디자인">
+  <meta name="author" content="withok.kr, 옥이랑">
+  <meta name="copyright" content="withok.kr">
+  <meta name="abstract" content="폰트 디자이너를 위한 미리보기 도구.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="body">
+<div class="fontPreview">
+  <div id="fristSection">
+    <div>
+      <select id="fontSelect" onchange="changeFontFamily()" selectedIndex="0"></select>
+    </div>
+    <div class="credit">
+      <div>
+      <a href="withok.kr">개발&디자인: 옥이랑(withok.kr)</a></div>
+      <div>
+      <a href="11172.kr">미리보기 폰트지원: 김태룡(11172.kr)</a></div>
+    </div>
+  </div>
+  <div id="secondSection">
+    <div id="writingMode">
+      <div>
+        <div class="nameOfRange vertical-rl">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.74 17.75">
+            <defs>
+              <style>
+                .cls-2 {
+                  fill: #fff;
+                }
+              </style>
+            </defs>
+            <path class="cls-2"
+              d="m8.87,1C4.53,1,1,4.53,1,8.87s3.53,7.87,7.87,7.87,7.87-3.53,7.87-7.87S13.21,1,8.87,1Zm-4.05,3.78h8.29v.9H4.83v-.9Zm0,1.82h8.29v.9H4.83v-.9Zm0,1.82h8.29v.9H4.83v-.9Zm7.61,4.87h-1.3l1.08-1.08h-7.39v-.9h7.4l-1.08-1.08h1.3l1.53,1.53-1.53,1.53Z" />
+            <polygon
+              points="11.14 10.23 12.22 11.3 4.83 11.3 4.83 12.21 12.22 12.21 11.14 13.29 12.44 13.29 13.97 11.76 12.44 10.23 11.14 10.23" />
+            <rect x="4.83" y="4.78" width="8.29" height=".9" />
+            <rect x="4.83" y="6.59" width="8.29" height=".9" />
+            <rect x="4.83" y="8.41" width="8.29" height=".9" />
+            <path
+              d="m8.87,0C3.98,0,0,3.98,0,8.87s3.98,8.87,8.87,8.87,8.87-3.98,8.87-8.87S13.76,0,8.87,0Zm0,16.75c-4.34,0-7.87-3.53-7.87-7.87S4.53,1,8.87,1s7.87,3.53,7.87,7.87-3.53,7.87-7.87,7.87Z" />
+          </svg>
+        </div>
+        <div class="nameOfRange horizontal-tb">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.75 17.75">
+            <defs>
+              <style>
+                .cls-2 {
+                  fill: #fff;
+                }
+              </style>
+            </defs>
+            <path class="cls-2"
+              d="m8.87,1C4.53,1,1,4.53,1,8.87s3.53,7.87,7.87,7.87,7.87-3.53,7.87-7.87S13.21,1,8.87,1Zm-3.96,11.34h-.9v-7.56h.9v7.56Zm1.82,0h-.9v-7.56h.9v7.56Zm1.82,0h-.9v-7.56h.9v7.56Zm1.82,0h-.9v-7.56h.9v7.56Zm4.54-.97l-1.53,1.53-1.53-1.53v-1.3l1.08,1.08v-6.37h.9v6.37l1.08-1.08v1.3Z" />
+            <polygon
+              points="13.83 4.78 12.93 4.78 12.93 11.15 11.85 10.07 11.85 11.37 13.38 12.9 14.91 11.37 14.91 10.07 13.83 11.15 13.83 4.78" />
+            <rect x="9.47" y="4.78" width=".9" height="7.56" />
+            <rect x="7.65" y="4.78" width=".9" height="7.56" />
+            <rect x="5.83" y="4.78" width=".9" height="7.56" />
+            <rect x="4.01" y="4.78" width=".9" height="7.56" />
+            <path
+              d="m8.87,0C3.98,0,0,3.98,0,8.87s3.98,8.87,8.87,8.87,8.87-3.98,8.87-8.87S13.77,0,8.87,0Zm0,16.75c-4.34,0-7.87-3.53-7.87-7.87S4.53,1,8.87,1s7.87,3.53,7.87,7.87-3.53,7.87-7.87,7.87Z" />
+          </svg>
+
+        </div>
+        <div class="intro">쓰기 방향</div>
+        <div id="selectDirection">
+          <select class="textDirection" onchange="changetextDirection()" selectedIndex="0"></select></div>
+      </div>
+    </div>
+    <div>
+      <div class="nameOfRange">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.75 17.75">
+          <polygon class="cls-1"
+            points="3.79 6.93 3.79 8.39 5.13 8.39 5.13 13.2 6.84 13.2 6.84 8.39 8.18 8.39 8.18 6.93 3.79 6.93" />
+          <path class="cls-1" d="m13.9,4.54v1.44h-2.01v7.22h-1.81v-7.22h-2.02v-1.44h5.84Z" />
+          <path class="cls-1"
+            d="m8.87,17.75C3.98,17.75,0,13.77,0,8.87S3.98,0,8.87,0s8.87,3.98,8.87,8.87-3.98,8.87-8.87,8.87Zm0-16.75C4.53,1,1,4.53,1,8.87s3.53,7.87,7.87,7.87,7.87-3.53,7.87-7.87S13.21,1,8.87,1Z" />
+        </svg>
+      </div>
+      <div class="intro">글자 크기</div>
+      <div class="type-set">
+        <input type="range" min="15" max="45" value="30" step="1" oninput="changeFontSize(this.value)">
+      </div>
+    </div>
+    <div>
+      <div class="nameOfRange">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.75 17.75">
+          <path class="cls-1" d="m3.29,5.85h1.4l1,4.69h.02l1.13-4.69h1.33l-1.71,6.45h-1.58l-1.59-6.45Z" />
+          <path class="cls-1" d="m7.32,12.73l2.13-7.3h.91l-2.13,7.3h-.92Z" />
+          <path class="cls-1"
+            d="m9.47,12.3l1.79-6.45h1.78l1.75,6.45h-1.42l-.36-1.43h-1.84l-.37,1.43h-1.33Zm2.6-5.21h-.02l-.62,2.79h1.29l-.65-2.79Z" />
+          <path class="cls-1"
+            d="m8.87,17.75C3.98,17.75,0,13.77,0,8.87S3.98,0,8.87,0s8.87,3.98,8.87,8.87-3.98,8.87-8.87,8.87Zm0-16.75C4.53,1,1,4.53,1,8.87s3.53,7.87,7.87,7.87,7.87-3.53,7.87-7.87S13.21,1,8.87,1Z" />
+        </svg>
+      </div>
+      <div class="intro">글자 사이</div>
+      <div class="type-set">
+        <input type="range" min="-100" max="100" value="0" step="10" oninput="showValueLetter(this.value)">
+      </div>
+    </div>
+    <div>
+      <div class="nameOfRange">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.75 17.74">
+          <rect class="cls-1" x="7.1" y="5.81" width="7.26" height=".82" />
+          <rect class="cls-1" x="7.1" y="7.58" width="7.26" height=".82" />
+          <rect class="cls-1" x="4.09" y="5.84" width=".82" height="6.06" />
+          <polygon class="cls-1" points="3.11 7.47 4.5 6.09 5.89 7.47 5.89 6.3 4.5 4.91 3.11 6.3 3.11 7.47" />
+          <polygon class="cls-1" points="3.11 10.27 4.5 11.66 5.89 10.27 5.89 11.45 4.5 12.84 3.11 11.45 3.11 10.27" />
+          <rect class="cls-1" x="7.1" y="9.35" width="7.26" height=".82" />
+          <rect class="cls-1" x="7.1" y="11.12" width="7.26" height=".82" />
+          <path class="cls-1"
+            d="m8.87,17.74C3.98,17.74,0,13.76,0,8.87S3.98,0,8.87,0s8.87,3.98,8.87,8.87-3.98,8.87-8.87,8.87Zm0-16.74C4.53,1,1,4.53,1,8.87s3.53,7.87,7.87,7.87,7.87-3.53,7.87-7.87S13.21,1,8.87,1Z" />
+        </svg>
+      </div>
+      <div class="intro">글줄 사이</div>
+      <div class="type-set">
+        <input type="range" min="1" max="2.0" value="1.5" step="0.25" oninput="showValueHeight(this.value)">
+      </div>
+    </div>
+  </div>
+  <div id="editableDiv" contenteditable="true" spellcheck="false"></div>
+  </div>
+  </div>
+</body>
+<script src="js/glyphs.js"></script>
+<script src="editHere.js"></script>
+<script src="js/fonts.js"></script>
+</html>
