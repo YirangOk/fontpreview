@@ -29,7 +29,7 @@ const fonts = [{
   }];
 ```
 
-- text: 미리보기에 보여질 본문 내용을 설정합니다. 이 텍스트는 사용자가 폰트를 어떻게 사용할 수 있는지를 보여주는 데 사용됩니다.
+- **text:** 미리보기에 보여질 본문 내용을 설정합니다. 이 텍스트는 사용자가 폰트를 어떻게 사용할 수 있는지를 보여주는 데 사용됩니다.
 ```javascript
 function insertText() {
   const text = `포스트스크립트(PostScript, PS)는 어도비 시스템을 설립한 존 워낙(John Warnock)과 찰스 게시케(Charlse Geschke)가 만든 페이지 기술 언어의 일종이다. 스크립트라는 말 그대로
