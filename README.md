@@ -55,6 +55,6 @@ iframe 태그를 사용하여 폰트 미리보기 도구를 웹 페이지에 삽
 
 ### 예시 사이트
 **- 11172 예시**: 'https://11172.kr/sanjak'
-~~**- withok.kr 예시**: 'https://withok.kr/fontpreviews'~~
+**- withok.kr 예시**: 'https://withok.kr/fontpreviews'
 
-~~다양한 예시 사이트를 모으고 있습니다. 예시 사이트를 github또는 'withok.kr/fontpreviews'에 남겨주시면 감사드립니다. 마지막으로 해당 코드는 ifream에 특화된 코드입니다. 다만 withok.kr 예시에서는 11172의 '산작' 지원으로 해당 폰트의 보안을 위해 ifream이 아닌 CMS서비스를 통해 제작되었습니다. 보안이 필수적인 경우는 자체적으로 보안에 필요한 플랫폼을 찾아 사용하시기를 '권장'드립니다.~~
+다양한 예시 사이트를 모으고 있습니다. 예시 사이트를 github또는 'withok.kr/fontpreviews'에 남겨주시면 감사드립니다. 마지막으로 해당 코드는 ifream에 특화된 코드입니다. 다만 withok.kr 예시에서는 11172의 '산작' 지원으로 해당 폰트의 보안을 위해 ifream이 아닌 CMS서비스를 통해 제작되었습니다. 보안이 필수적인 경우는 자체적으로 보안에 필요한 플랫폼을 찾아 사용하시기를 '권장'드립니다.
