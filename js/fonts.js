@@ -1,170 +1,165 @@
-  const select = document.getElementById('fontSelect');
+const select = document.getElementById('fontSelect');
 
-  for (let i = 0; i < fonts.length; i++) {
-    const font = fonts[i];
+const editableDiv = document.querySelector('div[contenteditable]');
 
-    const style = document.createElement('style');
-    style.appendChild(
-      document.createTextNode(`
-    @font-face {
-      font-family: '${font.name}';
-      src: url('${font.url}') format('woff');
-    }
-  `)
-    );
-    document
-      .head
-      .appendChild(style);
+for (let i = 0; i < fonts.length; i++) {
+  const font = fonts[i];
 
-    const option = document.createElement('option');
-    option.text = font.name;
-    select.appendChild(option);
+  const style = document.createElement('style');
+  style.appendChild(
+    document.createTextNode(`
+  @font-face {
+    font-family: '${font.name}';
+    src: url('${font.url}') format('woff');
   }
+`)
+  );
+  document
+    .head
+    .appendChild(style);
 
-  select.selectedIndex = 0;
-  changeFontFamily();
+  const option = document.createElement('option');
+  option.text = font.name;
+  select.appendChild(option);
+}
 
-  function changeFontFamily() {
-    const font = select
-      .options[select.selectedIndex]
-      .text;
-    document
-      .querySelector('div[contenteditable]')
-      .style
-      .fontFamily = font;
-  }
+select.selectedIndex = 0;
+changeFontFamily();
 
-  document.querySelector('div[contenteditable]').addEventListener('paste', function (e) {
-    e.preventDefault();
+function changeFontFamily() {
+  const font = select
+    .options[select.selectedIndex]
+    .text;
+  document
+    .querySelector('div[contenteditable]')
+    .style
+    .fontFamily = font;
+}
 
-    
-    const clipboardData = e.clipboardData || window.clipboardData;
-    const pastedText = clipboardData.getData('text/plain');
+document.querySelector('div[contenteditable]').addEventListener('paste', function (e) {
+  e.preventDefault();
 
-    
-    document.execCommand('insertHTML', false, pastedText);
-  });
+  
+  const clipboardData = e.clipboardData || window.clipboardData;
+  const pastedText = clipboardData.getData('text/plain');
 
-  const Direction = [{
-    name: '가로쓰기'
-  }, {
-    name: '세로쓰기'
-  }];
+  
+  document.execCommand('insertHTML', false, pastedText);
+});
 
-  const textDirectionSelect = document.querySelector('.textDirection');
-  Direction.forEach((direction, index) => {
-    const option = document.createElement('option');
-    option.text = direction.name;
-    option.value = index;
-    textDirectionSelect.appendChild(option);
-  });
+function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
-  function changetextDirection() {
-    const textDirection = ['horizontal-tb', 'vertical-rl'];
-    const selectedIndex = textDirectionSelect.selectedIndex;
-    const contentEditableDiv = document.querySelector('div[contenteditable]');
-    let savedSelection = null; 
+function adjustTextDirectionOptions() {
+if (isMobileDevice()) {
+    var selectElement = document.querySelector('.textDirection');
+    selectElement.removeChild(selectElement.options[1]);
+}
+}
+adjustTextDirectionOptions();
+const textDirectionSelect = document.querySelector('.textDirection');
 
-    contentEditableDiv.style.writingMode = textDirection[selectedIndex];
-    if (textDirection[selectedIndex] === 'vertical-rl') {
-        convertText(contentEditableDiv);
-        document
-          .querySelector(".vertical-rl")
-          .style
-          .display = 'none';
-        
-        document
-          .querySelector(".horizontal-tb")
-          .style
-          .display = 'block';
-      } else if (textDirection[selectedIndex] === 'horizontal-tb') {
-        revertGlyphs(contentEditableDiv);
-          document
-            .querySelector(".horizontal-tb")
-            .style
-            .display = 'none';
-          
-          document
-            .querySelector(".vertical-rl")
-            .style
-            .display = 'block';
-      }
+function changetextDirection() {
+  const textDirection = ['horizontal-tb', 'vertical-rl'];
+  const selectedIndex = textDirectionSelect.selectedIndex;
+  const contentEditableDiv = document.querySelector('div[contenteditable]');
+  let savedSelection = null; 
+
+  contentEditableDiv.style.writingMode = textDirection[selectedIndex];
+  if (textDirection[selectedIndex] === 'vertical-rl') {
+      convertText(contentEditableDiv);
       
-    contentEditableDiv.addEventListener('input', function (event) {
-      const inputText = event.data; 
+        contentEditableDiv
+        .style
+        .overflowY = 'hidden';
+        
+        contentEditableDiv
+        .style
+        .overflowX = 'scroll';
 
-      if (!isKorean(inputText) || isSpecialCharacter(inputText)) {
-        if (textDirection[selectedIndex] === 'vertical-rl') {
-          savedSelection = saveSelection(contentEditableDiv);
-          convertText(contentEditableDiv);
-          restoreSelection(contentEditableDiv, savedSelection);
-        } else if (textDirection[selectedIndex] === 'horizontal-tb') {
-          savedSelection = saveSelection(contentEditableDiv);
+    } else if (textDirection[selectedIndex] === 'horizontal-tb') {
+      revertGlyphs(contentEditableDiv);
           
-          revertGlyphs(contentEditableDiv);
-          restoreSelection(contentEditableDiv, savedSelection);
-        }
+          contentEditableDiv
+          .style
+          .overflowY = 'scroll';
+          
+          contentEditableDiv
+          .style
+          .overflowX = 'hidden';
+    }
+    
+  contentEditableDiv.addEventListener('input', function (event) {
+    const inputText = event.data; 
+
+    if (!isKorean(inputText) || isSpecialCharacter(inputText)) {
+      if (textDirection[selectedIndex] === 'vertical-rl') {
+        savedSelection = saveSelection(contentEditableDiv);
+        convertText(contentEditableDiv);
+        restoreSelection(contentEditableDiv, savedSelection);
+      } else if (textDirection[selectedIndex] === 'horizontal-tb') {
+        savedSelection = saveSelection(contentEditableDiv);
+        
+        revertGlyphs(contentEditableDiv);
+        restoreSelection(contentEditableDiv, savedSelection);
       }
-    });
-
-    function isSpecialCharacter(text) {
-      const specialCharacterPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-      return specialCharacterPattern.test(text);
     }
+  });
 
-    function isKorean(text) {
-      const koreanPattern = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
-      return koreanPattern.test(text);
-    }
-
+  function isKorean(text) {
+    const koreanPattern = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
+    return koreanPattern.test(text);
   }
 
-  function saveSelection(element) {
-    const selection = window.getSelection();
-    const range = selection.getRangeAt(0);
-    const rangeClone = range.cloneRange();
+}
 
-    return {
-      range: rangeClone,
-      offsetStart: range.startOffset,
-      offsetEnd: range.endOffset,
-    };
+function saveSelection(element) {
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+  const rangeClone = range.cloneRange();
+
+  return {
+    range: rangeClone,
+    offsetStart: range.startOffset,
+    offsetEnd: range.endOffset,
+  };
+}
+
+function restoreSelection(element, savedSelection) {
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(savedSelection.range);
+  selection.collapse(savedSelection.range.startContainer, savedSelection.offsetStart);
+  if (savedSelection.offsetStart !== savedSelection.offsetEnd) {
+    selection.extend(savedSelection.range.startContainer, savedSelection.offsetEnd);
   }
+}
 
-  function restoreSelection(element, savedSelection) {
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(savedSelection.range);
-    selection.collapse(savedSelection.range.startContainer, savedSelection.offsetStart);
-    if (savedSelection.offsetStart !== savedSelection.offsetEnd) {
-      selection.extend(savedSelection.range.startContainer, savedSelection.offsetEnd);
-    }
-  }
-
-  let lastHeightValue = 1.5;
+let lastHeightValue = 1.5;
 
 function changeFontSize(sizeValue) {
-  const editableDiv = document.querySelector('div[contenteditable]');
-  editableDiv.style.fontSize = sizeValue + 'px';
-  updateLineHeight(lastHeightValue);
+const editableDiv = document.querySelector('div[contenteditable]');
+editableDiv.style.fontSize = sizeValue + 'px';
+updateLineHeight(lastHeightValue);
 }
 
 function updateLineHeight(heightValue) {
-  lastHeightValue = heightValue;
-  const editableDiv = document.querySelector("div[contenteditable]");
-  const currentFontSize = parseFloat(getComputedStyle(editableDiv).fontSize);
-  const lineHeightInPx = heightValue * currentFontSize;
-  editableDiv.style.lineHeight = lineHeightInPx + 'px';
+lastHeightValue = heightValue;
+const editableDiv = document.querySelector("div[contenteditable]");
+const currentFontSize = parseFloat(getComputedStyle(editableDiv).fontSize);
+const lineHeightInPx = heightValue * currentFontSize;
+editableDiv.style.lineHeight = lineHeightInPx + 'px';
 }
 
 function showValueLetter(letterValue) {
-  const emValue = letterValue / 1000;
-  document
-    .querySelector("div[contenteditable]")
-    .style
-    .letterSpacing = emValue + 'em';
+const emValue = letterValue / 1000;
+document
+  .querySelector("div[contenteditable]")
+  .style
+  .letterSpacing = emValue + 'em';
 }
 
 function showValueHeight(heightValue) {
-  updateLineHeight(heightValue);
+updateLineHeight(heightValue);
 }
