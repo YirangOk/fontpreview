@@ -48,7 +48,8 @@
   height: -webkit-fill-available;
   margin-top: 20px;
   margin-bottom: 20px;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   background-color: white;
   padding: 15px;
   box-sizing: border-box;
@@ -190,7 +191,7 @@
   }
   #secondSection {
     grid-template-columns: 1fr 1fr;
-    grid-gap: 30px 20px;
+    grid-gap: 20px;
   }
 
   #fristSection {
