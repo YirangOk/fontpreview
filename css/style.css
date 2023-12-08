@@ -60,6 +60,17 @@
   border: 1px solid #000;
 }
 
+
+@media screen and (max-width: 768px) {
+
+.fontPreview div[contenteditable] { {
+    height: 400px;
+    /* pointer-events: none; */
+  }
+
+}
+
+
 .credit a{
   font-size: 10px;
   color: #ccc;
