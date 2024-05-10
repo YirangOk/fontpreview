@@ -16,6 +16,16 @@ const fonts = [{
     url: 'fonts/NotoSans-Bold.woff'
   }];
 
+
+// 세로쓰기 모드 설정: 화면 로딩 시 세로쓰기 모드를 기본값으로 설정하는 기능
+document.addEventListener("DOMContentLoaded", function () {
+  var select = document.querySelector(".textDirection");
+  // 세로쓰기 시 1로 변경
+  select.value = "0";
+  changetextDirection();
+});
+
+
 function insertText() {
   const text = `포스트스크립트(PostScript, PS)는 어도비 시스템을 설립한 존 워낙(John Warnock)과 찰스 게시케(Charlse Geschke)가 만든 페이지 기술 언어의 일종이다. 스크립트라는 말 그대로
   포스트스크립트 파일은 사람이 읽을 수 있게끔 되어있으며, 실제로 PCL 언어와는 달리 바이너리화되어있지 않아서 텍스트편집기 등에서 ISOLatin1 언어 포맷으로 읽을 수 있고, 또한 장치에 독립적일 수도
