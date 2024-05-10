@@ -62,7 +62,7 @@
 
 @media screen and (max-width: 768px) {
   .fontPreview div[contenteditable] {
-    pointer-events: none;
+    /* pointer-events: none; */
   }
 }
 
