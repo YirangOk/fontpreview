@@ -1,6 +1,6 @@
 :root {
-  --main-color: white;
-  --sub-color: black;
+  --main-color: black;
+  --sub-color: white;
   --basic-margin: 10px;
 }
 ::-webkit-scrollbar {
