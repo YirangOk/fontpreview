@@ -15,33 +15,33 @@
   background: #555;
 }
 
-:root{
-  --font-size:30px;
+:root {
+  --font-size: 30px;
 }
 
 .cls-1 {
   fill: #231815;
 }
 
-.horizontal-tb{
+.horizontal-tb {
   display: none;
 }
 
-.body{
+.body {
   margin: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-.fontPreview{
+.fontPreview {
   /* position: fixed; */
 }
 
 .fontPreview div[contenteditable] {
   -webkit-appearance: none;
   -moz-appearance: none;
-  writing-mode: horizontal-tb;
+  /* writing-mode: horizontal-tb; */
   display: flex;
   width: 100%;
   position: fixed;
@@ -60,17 +60,13 @@
   border: 1px solid #000;
 }
 
-
 @media screen and (max-width: 768px) {
-
-.fontPreview div[contenteditable] { 
+  .fontPreview div[contenteditable] {
     pointer-events: none;
   }
-
 }
 
-
-.credit a{
+.credit a {
   font-size: 10px;
   color: #ccc;
   display: block;
@@ -154,6 +150,10 @@
   align-items: center;
 }
 
+#editableDiv {
+  overflow: auto;
+}
+
 .type-set input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
@@ -192,8 +192,8 @@
 }
 
 @media screen and (max-width: 768px) {
-  :root{
-    --font-size:20px;
+  :root {
+    --font-size: 20px;
   }
 
   .fontPreview div[contenteditable] {
